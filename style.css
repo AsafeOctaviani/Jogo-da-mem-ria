@@ -1,0 +1,77 @@
+
+body {
+    background-color: rgb(34, 255, 0);
+}
+
+    
+#container-titulo {
+    color: rgb(0, 0, 255);
+    /*background-color: #ffffff;  Escolha a cor do retângulo aqui (Azul escuro) */
+    padding:10px;       /* Espaço interno: aumenta a "altura" do retângulo */
+    text-align: center;    /* Centraliza o título */
+    font-size: 25px;
+    font-family: 'Arial', sans-serif;
+    border-bottom: 3px solid #0000FF; /* Linha azul abaixo do retângulo */
+    margin: 20px auto;                /* Remove espaços externos indesejados */
+    width: 100%;              /* Faz o retângulo ocupar a largura toda */
+    box-sizing: border-box;   /* Garante que o preenchimento não quebre o layout */
+}
+
+
+.tabuleiro {
+    display: grid; /* Ativa o modo "Grade" */
+    
+    /* Cria 5 colunas de 100px cada */
+    grid-template-columns: repeat(5, 100px); 
+    
+    /* Cria 2 linhas (o navegador faz automático se tiver 10 cartas) */
+    gap: 15px; /* Espaço entre as cartas */
+    
+    justify-content: center; /* Centraliza o tabuleiro na tela */
+    margin: 20px auto;
+}
+
+.carta-verso {
+    width: 100px;
+    height: 140px;
+    background-color: #0D47A1;
+    border-radius: 8px;
+    border: 2px solid #ffffff; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    /* Agora elas não precisam ser span, o Grid cuida do alinhamento! */
+}
+
+.carta-frente {
+    background-color: #FF4C4C; /* Vermelho */
+    width: 100px;
+    height: 140px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+
+.botao-finalizar {
+    background-color: #ff4c4c; /* Vermelho */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+
+
+#rodape-jogo {
+    width: 100%;
+    padding: 20px 0;
+    background-color: #333; /* Cor de fundo do rodapé */
+    color: white;           /* Cor do texto */
+    text-align: center;
+    position: fixed;        /* Fixa ele no final da tela */
+    bottom: 0;
+    left: 0;
+}
