@@ -1,0 +1,142 @@
+/* ==========================================
+   ESTILOS GERAIS (RESET E FUNDO)
+   ========================================== */
+body {
+    background-color: #1a1a1a; /* Fundo escuro como no Jogo da Memória */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+/* ==========================================
+   ESTILOS DO JOGO DA MEMÓRIA (FLIP & FIND)
+   ========================================== */
+#container-titulo {
+    text-align: center;
+    padding: 20px;
+    background-color: #2c3e50;
+    color: #27ae60; /* Verde do Jogo da Memória */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+}
+
+#tela-jogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#status-jogo {
+    display: flex;
+    gap: 40px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #ecf0f1;
+}
+
+.tabuleiro {
+    display: grid;
+    grid-template-columns: repeat(5, 100px);
+    gap: 15px;
+    background-color: #34495e;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Cartas */
+.carta-verso, .carta-frente {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.carta-verso {
+    background-color: #2ecc71; /* Verde das cartas */
+    border: 3px solid #27ae60;
+}
+
+.carta-frente {
+    transform: rotateY(180deg);
+}
+
+/* Cores dos Pares */
+.tipo-1 { background-color: #e74c3c; }
+.tipo-2 { background-color: #3498db; }
+.tipo-3 { background-color: #f1c40f; }
+.tipo-4 { background-color: #9b59b6; }
+.tipo-5 { background-color: #e67e22; }
+
+.botao-finalizar, .botao-reiniciar {
+    margin-top: 30px;
+    padding: 12px 30px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-finalizar:hover {
+    background-color: #2ecc71;
+}
+
+/* ==========================================
+   ESTILOS DO QUIZ (ENGLISH QUEST)
+   ========================================== */
+.card {
+    background-color: #ffffff !important;
+    color: #333 !important;
+}
+
+.text-primary {
+    color: #0d6efd !important; /* Azul do Quiz */
+}
+
+.btn-primary {
+    background-color: #0d6efd !important;
+    border-color: #0d6efd !important;
+}
+
+.btn-outline-primary {
+    color: #0d6efd !important;
+    border-color: #0d6efd !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: #0d6efd !important;
+    color: white !important;
+}
+
+.bg-dark {
+    background-color: #212529 !important;
+}
+
+/* Animação para o botão de finalizar */
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+footer {
+    font-size: 0.9rem;
+    z-index: 100;
+}
