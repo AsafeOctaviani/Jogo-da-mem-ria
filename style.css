@@ -31,6 +31,46 @@ body {
     margin: 20px auto;
 }
 
+
+/* Estilos das frentes das cartas */
+.tipo-1{
+    background-color: #ff05c5; /* Vermelho */
+    width: 100px;
+    height: 140px;
+    border-radius: 8px;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+} /* Laranja */
+.tipo-2 { background-color: #4CAF50;
+        width: 100px;
+        height: 140px;
+        border-radius: 8px;
+        border: 2px solid #ffffff;
+        cursor: pointer;
+} /* Verde */
+.tipo-3 { background-color: #9C27B0;
+        width: 100px;
+        height: 140px;
+        border-radius: 8px;
+        border: 2px solid #ffffff;
+        cursor: pointer;
+} /* Roxo */
+.tipo-4 { background-color: #FFEB3B;
+        width: 100px;
+        height: 140px;
+        border-radius: 8px;
+        border: 2px solid #ffffff;
+        cursor: pointer;
+} /* Amarelo */
+.tipo-5 { background-color: #ff0055;
+            width: 100px;
+            height: 140px;
+            border-radius: 8px;
+            border: 2px solid #ffffff;
+            cursor: pointer;
+} /* Rosa */
+
+/* Classe base para a frente (comum a todas) */
 .carta-verso {
     width: 100px;
     height: 140px;
@@ -39,14 +79,6 @@ body {
     border: 2px solid #ffffff; 
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     /* Agora elas não precisam ser span, o Grid cuida do alinhamento! */
-}
-
-.carta-frente {
-    background-color: #FF4C4C; /* Vermelho */
-    width: 100px;
-    height: 140px;
-    border-radius: 8px;
-    cursor: pointer;
 }
 
 
@@ -75,3 +107,37 @@ body {
     bottom: 0;
     left: 0;
 }
+
+/* Container que segura as duas barras */
+#status-jogo {
+    display: flex;
+    flex-direction: column; /* Uma barra em cima da outra */
+    align-items: center;    /* Centraliza as barras na tela */
+    gap: 10px;              /* Espaço entre as barras */
+    margin: 20px 0;
+    font-size: 1.2rem;
+    margin-left: 5px;
+    
+}
+
+
+/* Estilo das barras individuais (Tentativas e Pares) */
+#tentativas, #pares {
+    background-color: #ff4c4c; /* O vermelho do seu print */
+    color: rgb(255, 255, 255);              /* Cor do texto */
+    
+    /* CONTROLANDO A LARGURA */
+    width: 250px;              /* Largura fixa menor */
+    
+    /* CENTRALIZANDO O TEXTO */
+    text-align: center;        /* Centraliza o texto horizontalmente */
+    
+    /* ESPAÇAMENTO E ESTILO */
+    padding: 12px 20px;        /* Espaço interno para o texto não ficar apertado */
+    border-radius: 10px;       /* Pontas arredondadas (fica mais moderno) */
+    
+    font-family: sans-serif;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra leve para dar profundidade */
+}
+
