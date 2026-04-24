@@ -1,0 +1,364 @@
+.game-board-container {
+  height: 100vh;
+  padding: 16px 24px;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: fadeIn 0.5s ease;
+  overflow: hidden;
+}
+
+/* === Header === */
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Heurística 2: Controle — botões de navegação */
+.header-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.control-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #a7f3d0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.control-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+/* Heurística 4: Reconhecimento — indicadores de fase */
+.phase-badges {
+  display: flex;
+  gap: 8px;
+}
+
+.phase-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.phase-badge.active {
+  border-color: #10b981;
+  color: #fff;
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+  transform: scale(1.1);
+}
+
+.phase-badge.completed {
+  border-color: #34d399;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.15);
+}
+
+/* === Stats — Heurística 1: Visibilidade === */
+.game-stats {
+  display: flex;
+  gap: 12px;
+}
+
+.stat {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 10px 18px;
+  text-align: center;
+  min-width: 100px;
+  transition: all 0.3s ease;
+}
+
+.stat-timer {
+  border-color: rgba(96, 165, 250, 0.2);
+  background: rgba(96, 165, 250, 0.06);
+}
+
+.stat-danger {
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 2px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #f0fdf4;
+}
+
+.stat-timer .stat-value {
+  color: #93c5fd;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-danger .stat-value {
+  color: #fca5a5;
+  animation: pulse 1s infinite;
+}
+
+/* === Barra de progresso — Heurística 1 === */
+.progress-bar-wrapper {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
+/* === Layout Duas Colunas === */
+.game-content {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+.game-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  padding-right: 0;
+}
+
+/* Custom scrollbar apenas para o painel de perguntas da direita */
+.game-right::-webkit-scrollbar {
+  width: 6px;
+}
+.game-right::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+}
+.game-right::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.2);
+  border-radius: 4px;
+}
+.game-right::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.4);
+}
+
+.game-right {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* === Instrução fixa — Heurística 4: Reconhecimento === */
+.game-instruction {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(209, 250, 229, 0.6);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.game-instruction strong {
+  color: #34d399;
+  font-weight: 600;
+}
+
+.instruction-icon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* === Grid de cards === */
+.cards-grid {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  align-content: center;
+  padding: 0;
+  height: 100%;
+}
+
+.cards-grid-3 {
+  grid-template-columns: repeat(3, minmax(110px, 150px));
+}
+
+.cards-grid-4 {
+  grid-template-columns: repeat(4, minmax(100px, 140px));
+}
+
+.cards-grid-5 {
+  grid-template-columns: repeat(5, minmax(90px, 130px));
+}
+
+.cards-grid-6 {
+  grid-template-columns: repeat(4, minmax(90px, 130px));
+}
+
+.cards-grid-7 {
+  grid-template-columns: repeat(4, minmax(85px, 125px));
+}
+
+/* === Animações === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* === Responsivo — Heurística 5: Estética minimalista === */
+@media (max-width: 900px) {
+  .game-content {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  
+  .game-board-container {
+    height: 100dvh;
+  }
+
+  .game-left, .game-right {
+    overflow-y: visible;
+    flex: none;
+    padding-right: 0;
+  }
+
+  .game-right {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .game-board-container {
+    padding: 14px 12px 20px;
+    gap: 12px;
+  }
+
+  .game-header {
+    justify-content: center;
+  }
+
+  .game-instruction {
+    font-size: 0.75rem;
+  }
+
+  .cards-grid-3 {
+    grid-template-columns: repeat(3, minmax(100px, 140px));
+  }
+  .cards-grid-4 {
+    grid-template-columns: repeat(4, minmax(85px, 120px));
+  }
+  .cards-grid-5 {
+    grid-template-columns: repeat(5, minmax(70px, 100px));
+  }
+  .cards-grid-6 {
+    grid-template-columns: repeat(3, minmax(90px, 130px));
+  }
+  .cards-grid-7 {
+    grid-template-columns: repeat(4, minmax(80px, 110px));
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-grid-3,
+  .cards-grid-4,
+  .cards-grid-5,
+  .cards-grid-6,
+  .cards-grid-7 {
+    grid-template-columns: repeat(2, minmax(110px, 1fr));
+  }
+
+  .stat {
+    min-width: 65px;
+    padding: 6px 8px;
+  }
+
+  .stat-value {
+    font-size: 0.95rem;
+  }
+
+  .stat-label {
+    font-size: 0.58rem;
+  }
+
+  .phase-badge {
+    width: 28px;
+    height: 28px;
+    font-size: 0.65rem;
+  }
+
+  .control-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .control-btn svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .game-instruction {
+    font-size: 0.68rem;
+    padding: 6px 10px;
+  }
+}

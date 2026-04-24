@@ -1,0 +1,193 @@
+.phase-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+  animation: fadeIn 0.3s ease;
+}
+
+.phase-modal {
+  background: linear-gradient(145deg, #0f2922, #0a1f19);
+  border-radius: 24px;
+  padding: 40px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.phase-modal.success {
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  box-shadow: 0 20px 60px rgba(16, 185, 129, 0.15);
+}
+
+.phase-modal.fail {
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  box-shadow: 0 20px 60px rgba(239, 68, 68, 0.1);
+}
+
+.modal-icon {
+  margin-bottom: 20px;
+}
+
+.modal-icon svg {
+  width: 64px;
+  height: 64px;
+}
+
+.success-icon svg {
+  color: #10b981;
+  animation: scaleIn 0.5s ease 0.2s both;
+}
+
+.fail-icon svg {
+  color: #ef4444;
+  animation: scaleIn 0.5s ease 0.2s both;
+}
+
+.modal-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #f0fdf4;
+  margin: 0 0 8px;
+}
+
+.modal-subtitle {
+  color: #a7f3d0;
+  font-size: 0.95rem;
+  margin: 0 0 28px;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.phase-modal.fail .modal-subtitle {
+  color: #fca5a5;
+}
+
+.modal-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+  justify-content: center;
+}
+
+.modal-stat {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 14px 24px;
+  flex: 1;
+}
+
+.modal-stat-value {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #34d399;
+}
+
+.modal-stat-label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 4px;
+}
+
+.modal-button {
+  padding: 14px 36px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  width: 100%;
+}
+
+.success-button {
+  color: #fff;
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.success-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.5);
+}
+
+.retry-button {
+  color: #fff;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+}
+
+.retry-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(239, 68, 68, 0.5);
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Heurística 3: Dica útil ao falhar */
+.modal-tip {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: #fde68a;
+  opacity: 0.9;
+}
+
+/* Heurística 2: Controle — link para menu */
+.modal-link-btn {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px;
+  background: none;
+  border: none;
+  color: rgba(167, 243, 208, 0.5);
+  font-size: 0.82rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.modal-link-btn:hover {
+  color: #a7f3d0;
+}
+
+@media (max-width: 480px) {
+  .phase-modal {
+    padding: 28px 20px;
+  }
+  .modal-title {
+    font-size: 1.3rem;
+  }
+}
