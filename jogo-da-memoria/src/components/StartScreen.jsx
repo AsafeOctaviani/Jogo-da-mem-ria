@@ -50,9 +50,7 @@ function StartScreen({ onStart }) {
           </svg>
         </button>
       </div>
-
-      {}
-      <div className="particles">
+<div className="particles">
         {[...Array(6)].map((_, i) => (
           <div key={i} className={`particle particle-${i + 1}`}>🍃</div>
         ))}

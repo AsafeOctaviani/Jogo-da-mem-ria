@@ -123,11 +123,8 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
 
   return (
     <div className="game-board-container">
-      {}
-      <ToastContainer toasts={toasts} />
-
-      {}
-      {showConfirm && (
+<ToastContainer toasts={toasts} />
+{showConfirm && (
         <ConfirmModal
           title={showConfirm === 'menu' ? 'Voltar ao menu?' : 'Recomeçar fase?'}
           message={
@@ -141,11 +138,8 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
           onCancel={() => setShowConfirm(null)}
         />
       )}
-
-      {}
-      <div className="game-header">
-        {}
-        <div className="header-controls">
+<div className="game-header">
+<div className="header-controls">
           <button
             className="control-btn"
             onClick={handleMenuClick}
@@ -168,9 +162,7 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
             </svg>
           </button>
         </div>
-
-        {}
-        <div className="phase-indicator">
+<div className="phase-indicator">
           <div className="phase-badges">
             {[1, 2, 3, 4, 5].map((p) => (
               <div
@@ -183,9 +175,7 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
             ))}
           </div>
         </div>
-
-        {}
-        <div className="game-stats">
+<div className="game-stats">
           <div className="stat stat-timer" title="Tempo decorrido">
             <span className="stat-label">Tempo</span>
             <span className="stat-value">{formatTime(elapsedTime)}</span>
@@ -200,23 +190,17 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
           </div>
         </div>
       </div>
-
-      {}
-      <div className="progress-bar-wrapper" title={`${Math.round(progressPercent)}% completo`}>
+<div className="progress-bar-wrapper" title={`${Math.round(progressPercent)}% completo`}>
         <div className="progress-bar" style={{ width: `${progressPercent}%` }} />
       </div>
 
       <div className="game-content">
-        {}
-        <div className="game-left">
-          {}
-          <div className="game-instruction">
+<div className="game-left">
+<div className="game-instruction">
             <span className="instruction-icon">💡</span>
             <span>Clique em 2 cards para tentar combinar uma <strong>descrição</strong> com sua <strong>imagem</strong></span>
           </div>
-
-          {}
-          <div className={`cards-grid cards-grid-${phase.pairs}`}>
+<div className={`cards-grid cards-grid-${phase.pairs}`}>
             {cards.map((card, index) => (
               <Card
                 key={card.uid}
@@ -230,9 +214,7 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
             ))}
           </div>
         </div>
-
-        {}
-        <div className="game-right">
+<div className="game-right">
           <QuestionPanel
             questions={phase.questions}
             matchedPairIds={matchedPairs}

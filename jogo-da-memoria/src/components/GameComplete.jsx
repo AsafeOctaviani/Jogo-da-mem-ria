@@ -21,8 +21,7 @@ function GameComplete({ totalAttempts, onRestart }) {
 
   return (
     <div className="game-complete-screen">
-      {}
-      <div className="confetti-container">
+<div className="confetti-container">
         {confettiPieces.map((piece) => (
           <div
             key={piece.id}

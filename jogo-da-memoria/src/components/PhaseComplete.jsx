@@ -21,8 +21,7 @@ function PhaseComplete({ success, phaseNumber, attempts, elapsedTime, totalPairs
             </div>
             <h2 className="modal-title">Fase {phaseNumber} Completa!</h2>
             <p className="modal-subtitle">Parabéns! Você encontrou todos os pares!</p>
-            {}
-            <div className="modal-stats">
+<div className="modal-stats">
               <div className="modal-stat">
                 <span className="modal-stat-value">{attempts}</span>
                 <span className="modal-stat-label">Tentativas</span>
@@ -50,8 +49,7 @@ function PhaseComplete({ success, phaseNumber, attempts, elapsedTime, totalPairs
               </svg>
             </div>
             <h2 className="modal-title">Tentativas Esgotadas!</h2>
-            {}
-            <p className="modal-subtitle">
+<p className="modal-subtitle">
               Você usou todas as 10 tentativas na Fase {phaseNumber}.
               <br /><span className="modal-tip">💡 Dica: observe os ícones 📷 e 📝 nos cards para distinguir imagens de descrições.</span>
             </p>
@@ -60,8 +58,7 @@ function PhaseComplete({ success, phaseNumber, attempts, elapsedTime, totalPairs
             </button>
           </>
         )}
-        {}
-        <button className="modal-link-btn" onClick={onBackToMenu} id="phase-back-menu-btn">
+<button className="modal-link-btn" onClick={onBackToMenu} id="phase-back-menu-btn">
           ← Voltar ao menu principal
         </button>
       </div>
