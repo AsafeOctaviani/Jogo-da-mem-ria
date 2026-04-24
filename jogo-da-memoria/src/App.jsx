@@ -6,7 +6,7 @@ import PhaseComplete from './components/PhaseComplete'
 import GameComplete from './components/GameComplete'
 
 function App() {
-  const [gameState, setGameState] = useState('start') // start | playing | phaseResult | gameComplete
+  const [gameState, setGameState] = useState('start') 
   const [phases, setPhases] = useState([])
   const [currentPhase, setCurrentPhase] = useState(0)
   const [totalAttempts, setTotalAttempts] = useState(0)
@@ -55,12 +55,10 @@ function App() {
     setGameState('playing')
   }, [currentPhase])
 
-  // Heurística 2: Controle — voltar ao menu principal
   const handleBackToMenu = useCallback(() => {
     setGameState('start')
   }, [])
 
-  // Heurística 2: Controle — recomeçar fase a qualquer momento
   const handleRestartPhase = useCallback(() => {
     setPhases((prev) => {
       const newPhases = [...prev]
@@ -69,7 +67,7 @@ function App() {
       newPhases[currentPhase] = { ...phase, cards: shuffled }
       return newPhases
     })
-    // Force re-render by toggling state
+    
     setGameState('start')
     setTimeout(() => setGameState('playing'), 0)
   }, [currentPhase])

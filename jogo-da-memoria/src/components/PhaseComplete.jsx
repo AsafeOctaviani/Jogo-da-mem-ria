@@ -21,7 +21,7 @@ function PhaseComplete({ success, phaseNumber, attempts, elapsedTime, totalPairs
             </div>
             <h2 className="modal-title">Fase {phaseNumber} Completa!</h2>
             <p className="modal-subtitle">Parabéns! Você encontrou todos os pares!</p>
-            {/* Heurística 1: Visibilidade — stats detalhadas */}
+            {}
             <div className="modal-stats">
               <div className="modal-stat">
                 <span className="modal-stat-value">{attempts}</span>
@@ -50,7 +50,7 @@ function PhaseComplete({ success, phaseNumber, attempts, elapsedTime, totalPairs
               </svg>
             </div>
             <h2 className="modal-title">Tentativas Esgotadas!</h2>
-            {/* Heurística 3: Prevenção — dica útil ao falhar */}
+            {}
             <p className="modal-subtitle">
               Você usou todas as 10 tentativas na Fase {phaseNumber}.
               <br /><span className="modal-tip">💡 Dica: observe os ícones 📷 e 📝 nos cards para distinguir imagens de descrições.</span>
@@ -60,7 +60,7 @@ function PhaseComplete({ success, phaseNumber, attempts, elapsedTime, totalPairs
             </button>
           </>
         )}
-        {/* Heurística 2: Controle — opção de voltar ao menu */}
+        {}
         <button className="modal-link-btn" onClick={onBackToMenu} id="phase-back-menu-btn">
           ← Voltar ao menu principal
         </button>

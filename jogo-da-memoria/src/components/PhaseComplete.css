@@ -155,7 +155,6 @@
   to { opacity: 1; }
 }
 
-/* Heurística 3: Dica útil ao falhar */
 .modal-tip {
   display: block;
   margin-top: 8px;
@@ -164,7 +163,6 @@
   opacity: 0.9;
 }
 
-/* Heurística 2: Controle — link para menu */
 .modal-link-btn {
   display: block;
   width: 100%;

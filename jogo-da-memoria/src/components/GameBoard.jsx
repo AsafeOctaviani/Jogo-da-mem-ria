@@ -14,11 +14,10 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
   const [isChecking, setIsChecking] = useState(false)
   const [shakeCards, setShakeCards] = useState(new Set())
   const [elapsedTime, setElapsedTime] = useState(0)
-  const [showConfirm, setShowConfirm] = useState(null) // 'menu' | 'restart' | null
+  const [showConfirm, setShowConfirm] = useState(null) 
   const timerRef = useRef(null)
   const { toasts, showToast } = useToast()
 
-  // Inicializa os cards quando a fase muda
   useEffect(() => {
     setCards([...phase.cards])
     setFlippedCards([])
@@ -29,7 +28,6 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
     setElapsedTime(0)
   }, [phase])
 
-  // Timer — Heurística 1: Visibilidade do status
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setElapsedTime((prev) => prev + 1)
@@ -60,13 +58,12 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
       const card1 = cards[first]
       const card2 = cards[second]
 
-      // Heurística 3: Prevenção de erros — feedback claro se tentou dois do mesmo tipo
       if (card1.type === card2.type) {
         showToast('Combine uma descrição com uma imagem!', 'warning', 2500)
       }
 
       if (card1.pairId === card2.pairId && card1.type !== card2.type) {
-        // Match encontrado!
+        
         showToast('Par encontrado! 🎉', 'success')
         setTimeout(() => {
           setMatchedPairs((prev) => {
@@ -83,10 +80,9 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
           setIsChecking(false)
         }, 600)
       } else {
-        // Sem match
+        
         const remaining = MAX_ATTEMPTS - newAttempts
 
-        // Heurística 3: Aviso proativo quando tentativas estão acabando
         if (remaining === 3) {
           showToast('Atenção! Restam apenas 3 tentativas', 'warning', 3000)
         } else if (remaining === 1) {
@@ -110,7 +106,6 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
     }
   }, [isChecking, flippedCards, attempts, cards, phase, onPhaseComplete, onPhaseFail, showToast, elapsedTime])
 
-  // Heurística 2: Controle — confirmação antes de sair
   const handleMenuClick = () => setShowConfirm('menu')
   const handleRestartClick = () => setShowConfirm('restart')
 
@@ -128,10 +123,10 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
 
   return (
     <div className="game-board-container">
-      {/* Heurística 1: Visibilidade — Toast de feedback */}
+      {}
       <ToastContainer toasts={toasts} />
 
-      {/* Heurística 2: Controle — Modal de confirmação */}
+      {}
       {showConfirm && (
         <ConfirmModal
           title={showConfirm === 'menu' ? 'Voltar ao menu?' : 'Recomeçar fase?'}
@@ -147,9 +142,9 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
         />
       )}
 
-      {/* Header com controles e informações */}
+      {}
       <div className="game-header">
-        {/* Heurística 2: Controle — botões de navegação */}
+        {}
         <div className="header-controls">
           <button
             className="control-btn"
@@ -174,7 +169,7 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
           </button>
         </div>
 
-        {/* Heurística 4: Reconhecimento — indicadores de fase */}
+        {}
         <div className="phase-indicator">
           <div className="phase-badges">
             {[1, 2, 3, 4, 5].map((p) => (
@@ -189,7 +184,7 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
           </div>
         </div>
 
-        {/* Heurística 1: Visibilidade — stats em tempo real */}
+        {}
         <div className="game-stats">
           <div className="stat stat-timer" title="Tempo decorrido">
             <span className="stat-label">Tempo</span>
@@ -206,21 +201,21 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
         </div>
       </div>
 
-      {/* Heurística 1: Visibilidade — Barra de progresso */}
+      {}
       <div className="progress-bar-wrapper" title={`${Math.round(progressPercent)}% completo`}>
         <div className="progress-bar" style={{ width: `${progressPercent}%` }} />
       </div>
 
       <div className="game-content">
-        {/* Lado Esquerdo: Cards e Instruções */}
+        {}
         <div className="game-left">
-          {/* Heurística 4: Reconhecimento — instrução fixa e clara */}
+          {}
           <div className="game-instruction">
             <span className="instruction-icon">💡</span>
             <span>Clique em 2 cards para tentar combinar uma <strong>descrição</strong> com sua <strong>imagem</strong></span>
           </div>
 
-          {/* Grid de cards */}
+          {}
           <div className={`cards-grid cards-grid-${phase.pairs}`}>
             {cards.map((card, index) => (
               <Card
@@ -236,7 +231,7 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
           </div>
         </div>
 
-        {/* Lado Direito: Painel de Perguntas */}
+        {}
         <div className="game-right">
           <QuestionPanel
             questions={phase.questions}

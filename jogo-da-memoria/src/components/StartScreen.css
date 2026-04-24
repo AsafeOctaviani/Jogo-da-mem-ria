@@ -111,7 +111,6 @@
   transform: translateX(4px);
 }
 
-/* === Partículas decorativas === */
 .particles {
   position: fixed;
   inset: 0;
@@ -133,7 +132,6 @@
 .particle-5 { top: 40%; left: 85%; animation-delay: 2s; }
 .particle-6 { top: 85%; left: 50%; animation-delay: 5.5s; }
 
-/* === Animações === */
 @keyframes fadeInUp {
   from {
     opacity: 0;

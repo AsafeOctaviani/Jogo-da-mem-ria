@@ -1,4 +1,3 @@
-// Importa todas as imagens
 import AlimentacaoSaudavel from '../assets/AlimentacaoSaudavel.png'
 import AnimalAmeacado from '../assets/AnimalAmeacado.png'
 import Arvore from '../assets/Arvore.png'
@@ -31,11 +30,6 @@ import TransporteVerde from '../assets/TransporteVerde.png'
 import UsoEficienteAgua from '../assets/UsoEficienteAgua.png'
 import VidaMarinha from '../assets/VidaMarinha.png'
 
-/**
- * Pool completo de 31 cards com descrições indiretas.
- * Cada item possui um id único, o import da imagem e uma descrição
- * que NÃO revela diretamente o nome escrito na imagem.
- */
 export const cardPool = [
   { id: 1,  image: AlimentacaoSaudavel,   answer: "Dieta equilibrada com frutas e vegetais" },
   { id: 2,  image: AnimalAmeacado,        answer: "Espécie em risco de extinção" },
@@ -70,7 +64,6 @@ export const cardPool = [
   { id: 31, image: VidaMarinha,           answer: "Animais e plantas que vivem nos oceanos" },
 ]
 
-/** Configuração de dificuldade por fase */
 const PHASE_CONFIG = [
   { phase: 1, pairs: 3 },
   { phase: 2, pairs: 4 },
@@ -79,12 +72,8 @@ const PHASE_CONFIG = [
   { phase: 5, pairs: 7 },
 ]
 
-/** Máximo de tentativas por fase */
 export const MAX_ATTEMPTS = 10
 
-/**
- * Embaralhamento Fisher-Yates
- */
 function shuffle(array) {
   const arr = [...array]
   for (let i = arr.length - 1; i > 0; i--) {
@@ -94,11 +83,6 @@ function shuffle(array) {
   return arr
 }
 
-/**
- * Gera as 5 fases sorteando pares aleatórios do pool.
- * Evita repetição: cada card aparece no máximo uma vez no jogo inteiro.
- * Total de pares necessários: 3+4+5+6+7 = 25 de 31 disponíveis.
- */
 export function generatePhases() {
   const shuffledPool = shuffle(cardPool)
   let index = 0
@@ -107,7 +91,6 @@ export function generatePhases() {
     const selectedCards = shuffledPool.slice(index, index + pairs)
     index += pairs
 
-    // Cria os cards de jogo: para cada par, um card de imagem e um card de texto
     const gameCards = []
     selectedCards.forEach((card) => {
       gameCards.push({

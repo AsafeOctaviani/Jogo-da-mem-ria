@@ -17,7 +17,7 @@ function Card({ type, content, isFlipped, isMatched, onClick, disabled }) {
       onKeyDown={(e) => e.key === 'Enter' && handleClick()}
     >
       <div className="card-inner">
-        {/* Verso do card — Heurística 4: badge de tipo para reconhecimento */}
+        {}
         <div className="card-back">
           <div className="card-back-pattern">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -30,7 +30,7 @@ function Card({ type, content, isFlipped, isMatched, onClick, disabled }) {
           </div>
 
         </div>
-        {/* Frente do card */}
+        {}
         <div className={`card-front ${type === 'image' ? 'card-front-image' : 'card-front-text'}`}>
           {type === 'image' ? (
             <div className="card-image-wrapper">

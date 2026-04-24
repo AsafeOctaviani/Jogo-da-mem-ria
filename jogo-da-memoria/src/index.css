@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap');
 
-/* === Reset & Base === */
 *,
 *::before,
 *::after {
@@ -31,7 +30,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Textura sutil de fundo */
 body::before {
   content: '';
   position: fixed;
@@ -61,7 +59,6 @@ body::before {
   min-height: 100vh;
 }
 
-/* === Tipografia === */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.2;
@@ -72,7 +69,6 @@ a {
   text-decoration: none;
 }
 
-/* === Scrollbar customizada === */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -90,7 +86,6 @@ a {
   background: rgba(16, 185, 129, 0.5);
 }
 
-/* === Seleção de texto === */
 ::selection {
   background: rgba(16, 185, 129, 0.3);
   color: #f0fdf4;

@@ -1,10 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import './Toast.css'
 
-/**
- * Hook para gerenciar toasts de feedback visual.
- * Heurística 1 — Visibilidade do status do sistema
- */
 export function useToast() {
   const [toasts, setToasts] = useState([])
 

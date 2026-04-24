@@ -7,7 +7,6 @@
   min-height: 90px;
 }
 
-/* Heurística 3: Prevenção — cursor adequado para cards desabilitados */
 .card.disabled {
   cursor: not-allowed;
   opacity: 0.7;
@@ -43,7 +42,6 @@
   justify-content: center;
 }
 
-/* === Verso do card === */
 .card-back {
   background: linear-gradient(145deg, #0d4a3a, #0a3d2f);
   border: 2px solid rgba(16, 185, 129, 0.3);
@@ -83,14 +81,12 @@
   transform: scale(1.03);
 }
 
-/* === Frente do card === */
 .card-front {
   transform: rotateY(180deg);
   background: linear-gradient(145deg, #f0fdf4, #dcfce7);
   border: 2px solid #a7f3d0;
 }
 
-/* Heurística 4: Reconhecimento — bordas diferenciadas por tipo */
 .card-front-text {
   border-color: #93c5fd;
   background: linear-gradient(145deg, #eff6ff, #dbeafe);
@@ -134,7 +130,6 @@
   margin: 0;
 }
 
-/* === Card matched === */
 .card.matched .card-front {
   border-color: #10b981;
   box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
@@ -145,7 +140,6 @@
   opacity: 0.85;
 }
 
-/* === Animações === */
 @keyframes matchPulse {
   0% { transform: rotateY(180deg) scale(1); }
   50% { transform: rotateY(180deg) scale(1.08); }
@@ -164,7 +158,6 @@
   80% { transform: rotateY(0deg) translateX(4px); }
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   .card {
     min-height: 110px;

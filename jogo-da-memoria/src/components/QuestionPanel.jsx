@@ -1,7 +1,7 @@
 import './QuestionPanel.css'
 
 function QuestionPanel({ questions, matchedPairIds, phaseCards }) {
-  // Mapear pairId para a descrição para saber quais perguntas foram respondidas
+  
   const matchedAnswers = new Set()
   phaseCards.forEach((card) => {
     if (matchedPairIds.has(card.pairId)) {

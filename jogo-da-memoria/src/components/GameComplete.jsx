@@ -5,7 +5,7 @@ function GameComplete({ totalAttempts, onRestart }) {
   const [confettiPieces, setConfettiPieces] = useState([])
 
   useEffect(() => {
-    // Gera peças de confetti
+    
     const pieces = Array.from({ length: 50 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
@@ -21,7 +21,7 @@ function GameComplete({ totalAttempts, onRestart }) {
 
   return (
     <div className="game-complete-screen">
-      {/* Confetti */}
+      {}
       <div className="confetti-container">
         {confettiPieces.map((piece) => (
           <div

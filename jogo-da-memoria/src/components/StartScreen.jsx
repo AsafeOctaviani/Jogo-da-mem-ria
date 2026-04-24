@@ -51,7 +51,7 @@ function StartScreen({ onStart }) {
         </button>
       </div>
 
-      {/* Partículas decorativas */}
+      {}
       <div className="particles">
         {[...Array(6)].map((_, i) => (
           <div key={i} className={`particle particle-${i + 1}`}>🍃</div>
