@@ -1,8 +1,10 @@
 import './StartScreen.css'
+import startBg from '../assets/start-bg.png'
 
 function StartScreen({ onStart }) {
   return (
     <div className="start-screen">
+      <img src={startBg} alt="" className="start-bg" aria-hidden="true" />
       <div className="start-content">
         <div className="start-logo">
           <svg viewBox="0 0 80 80" fill="none">

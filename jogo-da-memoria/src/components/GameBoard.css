@@ -174,14 +174,17 @@
 .game-right::-webkit-scrollbar {
   width: 6px;
 }
+
 .game-right::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.02);
   border-radius: 4px;
 }
+
 .game-right::-webkit-scrollbar-thumb {
   background: rgba(16, 185, 129, 0.2);
   border-radius: 4px;
 }
+
 .game-right::-webkit-scrollbar-thumb:hover {
   background: rgba(16, 185, 129, 0.4);
 }
@@ -248,13 +251,25 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
 }
 
 @media (max-width: 900px) {
@@ -262,12 +277,13 @@
     flex-direction: column;
     overflow-y: auto;
   }
-  
+
   .game-board-container {
     height: 100dvh;
   }
 
-  .game-left, .game-right {
+  .game-left,
+  .game-right {
     overflow-y: visible;
     flex: none;
     padding-right: 0;
@@ -294,21 +310,26 @@
   .cards-grid-3 {
     grid-template-columns: repeat(3, minmax(100px, 140px));
   }
+
   .cards-grid-4 {
     grid-template-columns: repeat(4, minmax(85px, 120px));
   }
+
   .cards-grid-5 {
     grid-template-columns: repeat(5, minmax(70px, 100px));
   }
+
   .cards-grid-6 {
     grid-template-columns: repeat(3, minmax(90px, 130px));
   }
+
   .cards-grid-7 {
     grid-template-columns: repeat(4, minmax(80px, 110px));
   }
 }
 
 @media (max-width: 480px) {
+
   .cards-grid-3,
   .cards-grid-4,
   .cards-grid-5,
