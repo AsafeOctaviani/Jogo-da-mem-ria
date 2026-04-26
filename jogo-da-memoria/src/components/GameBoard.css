@@ -8,6 +8,18 @@
   gap: 12px;
   animation: fadeIn 0.5s ease;
   overflow: hidden;
+  position: relative;
+}
+
+.game-board-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .game-header {
@@ -16,6 +28,8 @@
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
 .header-controls {
@@ -105,6 +119,26 @@
 .stat-timer {
   border-color: rgba(96, 165, 250, 0.2);
   background: rgba(96, 165, 250, 0.06);
+  transition: all 0.4s ease;
+}
+
+.stat-timer-danger {
+  border-color: rgba(239, 68, 68, 0.5) !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+  animation: pulse 1s infinite;
+}
+
+.stat-timer-danger .stat-value {
+  color: #fca5a5 !important;
+}
+
+.stat-timer-warning {
+  border-color: rgba(251, 191, 36, 0.5) !important;
+  background: rgba(251, 191, 36, 0.08) !important;
+}
+
+.stat-timer-warning .stat-value {
+  color: #fde68a !important;
 }
 
 .stat-danger {
@@ -144,6 +178,8 @@
   border-radius: 3px;
   background: rgba(255, 255, 255, 0.08);
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .progress-bar {
@@ -154,12 +190,43 @@
   box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
 }
 
+.timer-bar-wrapper {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.timer-bar {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #60a5fa, #93c5fd);
+  transition: width 1s linear;
+  box-shadow: 0 0 6px rgba(96, 165, 250, 0.4);
+}
+
+.timer-bar-warning {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  box-shadow: 0 0 6px rgba(251, 191, 36, 0.4);
+}
+
+.timer-bar-danger {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+  animation: pulse 1s infinite;
+}
+
 .game-content {
   display: flex;
   gap: 24px;
   flex: 1;
   min-height: 0;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .game-left {
@@ -228,26 +295,29 @@
   align-content: center;
   padding: 0;
   height: 100%;
+  max-height: 100%;
 }
 
 .cards-grid-3 {
-  grid-template-columns: repeat(3, minmax(110px, 150px));
+  grid-template-columns: repeat(3, minmax(0, 150px));
 }
 
 .cards-grid-4 {
-  grid-template-columns: repeat(4, minmax(100px, 140px));
+  grid-template-columns: repeat(4, minmax(0, 140px));
 }
 
 .cards-grid-5 {
-  grid-template-columns: repeat(5, minmax(90px, 130px));
+  grid-template-columns: repeat(5, minmax(0, 130px));
 }
 
 .cards-grid-6 {
-  grid-template-columns: repeat(4, minmax(90px, 130px));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .cards-grid-7 {
-  grid-template-columns: repeat(4, minmax(85px, 125px));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
 }
 
 @keyframes fadeIn {
@@ -308,23 +378,23 @@
   }
 
   .cards-grid-3 {
-    grid-template-columns: repeat(3, minmax(100px, 140px));
+    grid-template-columns: repeat(3, minmax(0, 140px));
   }
 
   .cards-grid-4 {
-    grid-template-columns: repeat(4, minmax(85px, 120px));
+    grid-template-columns: repeat(4, minmax(0, 120px));
   }
 
   .cards-grid-5 {
-    grid-template-columns: repeat(5, minmax(70px, 100px));
+    grid-template-columns: repeat(5, minmax(0, 100px));
   }
 
   .cards-grid-6 {
-    grid-template-columns: repeat(3, minmax(90px, 130px));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .cards-grid-7 {
-    grid-template-columns: repeat(4, minmax(80px, 110px));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 

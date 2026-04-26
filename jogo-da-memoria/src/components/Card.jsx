@@ -17,7 +17,7 @@ function Card({ type, content, isFlipped, isMatched, onClick, disabled }) {
       onKeyDown={(e) => e.key === 'Enter' && handleClick()}
     >
       <div className="card-inner">
-<div className="card-back">
+        <div className="card-back">
           <div className="card-back-pattern">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M12 3c-1.5 2-3 3.5-3 5.5a3 3 0 1 0 6 0c0-2-1.5-3.5-3-5.5z" />
@@ -29,7 +29,7 @@ function Card({ type, content, isFlipped, isMatched, onClick, disabled }) {
           </div>
 
         </div>
-<div className={`card-front ${type === 'image' ? 'card-front-image' : 'card-front-text'}`}>
+        <div className={`card-front ${type === 'image' ? 'card-front-image' : 'card-front-text'}`}>
           {type === 'image' ? (
             <div className="card-image-wrapper">
               <img src={content} alt="Card de imagem" className="card-image" draggable="false" />

@@ -3,19 +3,22 @@ import Card from './Card'
 import QuestionPanel from './QuestionPanel'
 import ToastContainer, { useToast } from './Toast'
 import ConfirmModal from './ConfirmModal'
-import { MAX_ATTEMPTS } from '../data/phases'
+import { PHASE_TIME_LIMITS } from '../data/phases'
+import gameBg from '../assets/game-bg.png'
 import './GameBoard.css'
 
 function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestartPhase, currentPhaseIndex }) {
+  const timeLimit = PHASE_TIME_LIMITS[currentPhaseIndex] || 180
   const [cards, setCards] = useState([])
   const [flippedCards, setFlippedCards] = useState([])
   const [matchedPairs, setMatchedPairs] = useState(new Set())
   const [attempts, setAttempts] = useState(0)
   const [isChecking, setIsChecking] = useState(false)
   const [shakeCards, setShakeCards] = useState(new Set())
-  const [elapsedTime, setElapsedTime] = useState(0)
+  const [remainingTime, setRemainingTime] = useState(0)
   const [showConfirm, setShowConfirm] = useState(null) 
   const timerRef = useRef(null)
+  const gameOverRef = useRef(false)
   const { toasts, showToast } = useToast()
 
   useEffect(() => {
@@ -25,15 +28,28 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
     setAttempts(0)
     setIsChecking(false)
     setShakeCards(new Set())
-    setElapsedTime(0)
-  }, [phase])
+    setRemainingTime(timeLimit)
+    gameOverRef.current = false
+  }, [phase, timeLimit])
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
-      setElapsedTime((prev) => prev + 1)
+      setRemainingTime((prev) => {
+        if (prev <= 1) {
+          clearInterval(timerRef.current)
+          if (!gameOverRef.current) {
+            gameOverRef.current = true
+            setTimeout(() => onPhaseFail(), 300)
+          }
+          return 0
+        }
+        if (prev === 61) showToast('⏱️ 1 minuto restante!', 'warning', 3000)
+        if (prev === 31) showToast('⚠️ 30 segundos!', 'error', 3000)
+        return prev - 1
+      })
     }, 1000)
     return () => clearInterval(timerRef.current)
-  }, [phase])
+  }, [phase, onPhaseFail, showToast])
 
   const formatTime = (seconds) => {
     const m = Math.floor(seconds / 60)
@@ -41,9 +57,12 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
     return `${m}:${s.toString().padStart(2, '0')}`
   }
 
+  const elapsedTime = timeLimit - remainingTime
+
   const handleCardClick = useCallback((index) => {
     if (isChecking) return
     if (flippedCards.length >= 2) return
+    if (remainingTime <= 0) return
     if (flippedCards.includes(index)) return
 
     const newFlipped = [...flippedCards, index]
@@ -72,7 +91,8 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
 
             if (next.size === phase.pairs) {
               clearInterval(timerRef.current)
-              setTimeout(() => onPhaseComplete(newAttempts, elapsedTime), 600)
+              gameOverRef.current = true
+              setTimeout(() => onPhaseComplete(newAttempts, timeLimit - remainingTime), 600)
             }
             return next
           })
@@ -80,31 +100,17 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
           setIsChecking(false)
         }, 600)
       } else {
-        
-        const remaining = MAX_ATTEMPTS - newAttempts
-
-        if (remaining === 3) {
-          showToast('Atenção! Restam apenas 3 tentativas', 'warning', 3000)
-        } else if (remaining === 1) {
-          showToast('Última tentativa!', 'error', 3000)
-        }
-
         setTimeout(() => {
           setShakeCards(new Set([first, second]))
           setTimeout(() => {
             setShakeCards(new Set())
             setFlippedCards([])
             setIsChecking(false)
-
-            if (newAttempts >= MAX_ATTEMPTS) {
-              clearInterval(timerRef.current)
-              setTimeout(() => onPhaseFail(), 300)
-            }
           }, 500)
         }, 800)
       }
     }
-  }, [isChecking, flippedCards, attempts, cards, phase, onPhaseComplete, onPhaseFail, showToast, elapsedTime])
+  }, [isChecking, flippedCards, attempts, cards, phase, onPhaseComplete, showToast, remainingTime, timeLimit])
 
   const handleMenuClick = () => setShowConfirm('menu')
   const handleRestartClick = () => setShowConfirm('restart')
@@ -118,11 +124,16 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
     setShowConfirm(null)
   }
 
-  const attemptsLeft = MAX_ATTEMPTS - attempts
   const progressPercent = (matchedPairs.size / phase.pairs) * 100
+  const timePercent = timeLimit > 0 ? (remainingTime / timeLimit) * 100 : 0
+  const isTimeLow = remainingTime <= 30
+  const isTimeWarning = !isTimeLow && remainingTime <= 60
+  const timerClass = isTimeLow ? 'stat-timer-danger' : isTimeWarning ? 'stat-timer-warning' : ''
+  const timerBarClass = isTimeLow ? 'timer-bar-danger' : isTimeWarning ? 'timer-bar-warning' : ''
 
   return (
     <div className="game-board-container">
+<img src={gameBg} alt="" className="game-board-bg" aria-hidden="true" />
 <ToastContainer toasts={toasts} />
 {showConfirm && (
         <ConfirmModal
@@ -176,13 +187,13 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
           </div>
         </div>
 <div className="game-stats">
-          <div className="stat stat-timer" title="Tempo decorrido">
+          <div className={`stat stat-timer ${timerClass}`} title="Tempo restante">
             <span className="stat-label">Tempo</span>
-            <span className="stat-value">{formatTime(elapsedTime)}</span>
+            <span className="stat-value">{formatTime(remainingTime)}</span>
           </div>
-          <div className={`stat ${attemptsLeft <= 3 ? 'stat-danger' : ''}`} title="Tentativas restantes">
+          <div className="stat" title="Tentativas usadas">
             <span className="stat-label">Tentativas</span>
-            <span className="stat-value">{attemptsLeft}/{MAX_ATTEMPTS}</span>
+            <span className="stat-value">{attempts}</span>
           </div>
           <div className="stat" title="Pares encontrados">
             <span className="stat-label">Pares</span>
@@ -192,6 +203,9 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
       </div>
 <div className="progress-bar-wrapper" title={`${Math.round(progressPercent)}% completo`}>
         <div className="progress-bar" style={{ width: `${progressPercent}%` }} />
+      </div>
+      <div className="timer-bar-wrapper" title={`${Math.round(timePercent)}% do tempo restante`}>
+        <div className={`timer-bar ${timerBarClass}`} style={{ width: `${timePercent}%` }} />
       </div>
 
       <div className="game-content">

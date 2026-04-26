@@ -4,7 +4,8 @@
   user-select: none;
   width: 100%;
   aspect-ratio: 3 / 4;
-  min-height: 90px;
+  min-height: 0;
+  overflow: visible;
 }
 
 .card.disabled {
@@ -51,6 +52,23 @@
   position: relative;
 }
 
+.card-back::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.06) 40%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.06) 60%,
+      transparent 100%);
+  animation: shimmer 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
 .card-back-pattern {
   display: flex;
   flex-direction: column;
@@ -71,14 +89,15 @@
 }
 
 .card:hover:not(.flipped):not(.matched):not(.disabled) .card-back {
-  border-color: rgba(16, 185, 129, 0.6);
+  border-color: rgba(16, 185, 129, 0.7);
   box-shadow:
-    0 4px 20px rgba(16, 185, 129, 0.15),
+    0 0 20px rgba(16, 185, 129, 0.25),
+    0 8px 25px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.card:hover:not(.flipped):not(.matched):not(.disabled) .card-inner {
-  transform: scale(1.03);
+.card:hover:not(.flipped):not(.matched):not(.disabled) .card-back::after {
+  animation: shimmerFast 1.5s ease-in-out infinite;
 }
 
 .card-front {
@@ -140,13 +159,35 @@
   opacity: 0.85;
 }
 
+@keyframes shimmer {
+
+  0%,
+  100% {
+    left: -100%;
+  }
+
+  50% {
+    left: 150%;
+  }
+}
+
+@keyframes shimmerFast {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 150%;
+  }
+}
+
 @keyframes matchPulse {
   0% {
     transform: rotateY(180deg) scale(1);
   }
 
   50% {
-    transform: rotateY(180deg) scale(1.08);
+    transform: rotateY(180deg) scale(1.03);
   }
 
   100% {
@@ -184,7 +225,7 @@
 
 @media (max-width: 600px) {
   .card {
-    min-height: 110px;
+    min-height: 0;
   }
 
   .card-text {

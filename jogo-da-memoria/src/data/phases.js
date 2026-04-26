@@ -72,7 +72,8 @@ const PHASE_CONFIG = [
   { phase: 5, pairs: 7 },
 ]
 
-export const MAX_ATTEMPTS = 10
+// Tempo limite por fase (em segundos): 3min, 2:45, 2:30, 2:15, 2:00
+export const PHASE_TIME_LIMITS = [180, 165, 150, 135, 120]
 
 function shuffle(array) {
   const arr = [...array]

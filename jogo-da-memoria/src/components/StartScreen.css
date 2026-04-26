@@ -17,13 +17,8 @@
   opacity: 0.35;
   z-index: 0;
   pointer-events: none;
-  animation: fadeIn 1.2s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 0.35; }
-}
 
 .start-content {
   text-align: center;

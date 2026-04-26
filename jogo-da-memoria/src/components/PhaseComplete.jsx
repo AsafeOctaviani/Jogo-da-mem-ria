@@ -1,6 +1,21 @@
+import { useEffect, useState } from 'react'
 import './PhaseComplete.css'
 
 function PhaseComplete({ success, phaseNumber, attempts, elapsedTime, totalPairs, onNext, onRetry, onBackToMenu }) {
+  const [confettiPieces, setConfettiPieces] = useState([])
+
+  useEffect(() => {
+    if (!success) return
+    const pieces = Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      delay: Math.random() * 2,
+      duration: 1.5 + Math.random() * 2.5,
+      size: 4 + Math.random() * 6,
+      color: ['#10b981', '#34d399', '#6ee7b7', '#fbbf24', '#f59e0b'][Math.floor(Math.random() * 5)],
+    }))
+    setConfettiPieces(pieces)
+  }, [success])
   const formatTime = (seconds) => {
     if (!seconds) return '—'
     const m = Math.floor(seconds / 60)
@@ -10,6 +25,24 @@ function PhaseComplete({ success, phaseNumber, attempts, elapsedTime, totalPairs
 
   return (
     <div className="phase-modal-overlay">
+      {success && confettiPieces.length > 0 && (
+        <div className="phase-confetti-container">
+          {confettiPieces.map((piece) => (
+            <div
+              key={piece.id}
+              className="phase-confetti-piece"
+              style={{
+                left: `${piece.left}%`,
+                animationDelay: `${piece.delay}s`,
+                animationDuration: `${piece.duration}s`,
+                width: `${piece.size}px`,
+                height: `${piece.size}px`,
+                backgroundColor: piece.color,
+              }}
+            />
+          ))}
+        </div>
+      )}
       <div className={`phase-modal ${success ? 'success' : 'fail'}`}>
         {success ? (
           <>
@@ -48,9 +81,9 @@ function PhaseComplete({ success, phaseNumber, attempts, elapsedTime, totalPairs
                 <line x1="9" y1="9" x2="15" y2="15" />
               </svg>
             </div>
-            <h2 className="modal-title">Tentativas Esgotadas!</h2>
+            <h2 className="modal-title">Tempo Esgotado!</h2>
 <p className="modal-subtitle">
-              Você usou todas as 10 tentativas na Fase {phaseNumber}.
+              O tempo acabou na Fase {phaseNumber}.
               <br /><span className="modal-tip">💡 Dica: observe os ícones 📷 e 📝 nos cards para distinguir imagens de descrições.</span>
             </p>
             <button className="modal-button retry-button" onClick={onRetry} id="retry-phase-btn">

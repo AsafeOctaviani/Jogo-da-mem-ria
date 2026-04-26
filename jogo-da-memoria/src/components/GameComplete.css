@@ -16,9 +16,14 @@
 }
 
 .trophy-icon {
-  font-size: 5rem;
   margin-bottom: 16px;
-  animation: bounce 1s ease infinite;
+  animation: bounce 2s ease infinite;
+  filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.4));
+}
+
+.trophy-icon svg {
+  width: 100px;
+  height: 100px;
 }
 
 .complete-title {

@@ -36,8 +36,8 @@ function StartScreen({ onStart }) {
             <span>Combine descrição + imagem</span>
           </div>
           <div className="rule">
-            <span className="rule-icon">🎯</span>
-            <span>Máximo 10 tentativas por fase</span>
+            <span className="rule-icon">⏱️</span>
+            <span>Complete antes do tempo acabar</span>
           </div>
           <div className="rule">
             <span className="rule-icon">📈</span>
