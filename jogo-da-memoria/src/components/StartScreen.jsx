@@ -32,15 +32,15 @@ function StartScreen({ onStart }) {
 
         <div className="start-rules">
           <div className="rule">
-            <span className="rule-icon">🃏</span>
+            <span className="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" width="20" height="20"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v4l2 2"/></svg></span>
             <span>Combine descrição + imagem</span>
           </div>
           <div className="rule">
-            <span className="rule-icon">⏱️</span>
+            <span className="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
             <span>Complete antes do tempo acabar</span>
           </div>
           <div className="rule">
-            <span className="rule-icon">📈</span>
+            <span className="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" width="20" height="20"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
             <span>5 fases com dificuldade crescente</span>
           </div>
         </div>
@@ -54,7 +54,7 @@ function StartScreen({ onStart }) {
       </div>
 <div className="particles">
         {[...Array(6)].map((_, i) => (
-          <div key={i} className={`particle particle-${i + 1}`}>🍃</div>
+          <div key={i} className={`particle particle-${i + 1}`}><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.6"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20c4 0 5-2 5-2s1 2 5 2a4.49 4.49 0 0 0 1.29-.3L20.18 22l1.82-.66C19.83 16.17 17.72 10 9 8h8z"/></svg></div>
         ))}
       </div>
     </div>

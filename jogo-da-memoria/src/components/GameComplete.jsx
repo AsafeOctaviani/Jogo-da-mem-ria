@@ -75,26 +75,26 @@ function GameComplete({ totalAttempts, onRestart }) {
 
         <p className="complete-message">
           Você demonstrou grande conhecimento sobre sustentabilidade e meio ambiente.
-          Juntos, podemos construir um mundo mais verde! 🌍
+          Juntos, podemos construir um mundo mais verde!
         </p>
 
         <div className="complete-stats">
           <div className="complete-stat">
-            <span className="complete-stat-icon">⭐</span>
+            <span className="complete-stat-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
             <div>
               <span className="complete-stat-value">5/5</span>
               <span className="complete-stat-label">Fases Completas</span>
             </div>
           </div>
           <div className="complete-stat">
-            <span className="complete-stat-icon">🎯</span>
+            <span className="complete-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
             <div>
               <span className="complete-stat-value">{totalAttempts}</span>
               <span className="complete-stat-label">Tentativas Totais</span>
             </div>
           </div>
           <div className="complete-stat">
-            <span className="complete-stat-icon">🃏</span>
+            <span className="complete-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></span>
             <div>
               <span className="complete-stat-value">25</span>
               <span className="complete-stat-label">Pares Encontrados</span>
@@ -103,7 +103,8 @@ function GameComplete({ totalAttempts, onRestart }) {
         </div>
 
         <button className="restart-button" onClick={onRestart} id="restart-game-btn">
-          🔄 Jogar Novamente
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" width="18" height="18" style={{marginRight: '8px'}}><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          Jogar Novamente
         </button>
       </div>
     </div>

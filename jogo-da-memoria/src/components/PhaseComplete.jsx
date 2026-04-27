@@ -84,10 +84,11 @@ function PhaseComplete({ success, phaseNumber, attempts, elapsedTime, totalPairs
             <h2 className="modal-title">Tempo Esgotado!</h2>
 <p className="modal-subtitle">
               O tempo acabou na Fase {phaseNumber}.
-              <br /><span className="modal-tip">💡 Dica: observe os ícones 📷 e 📝 nos cards para distinguir imagens de descrições.</span>
+              <br /><span className="modal-tip">Dica: observe os ícones nos cards para distinguir imagens de descrições.</span>
             </p>
             <button className="modal-button retry-button" onClick={onRetry} id="retry-phase-btn">
-              🔄 Recomeçar Fase
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" width="16" height="16" style={{marginRight: '6px', verticalAlign: 'middle'}}><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              Recomeçar Fase
             </button>
           </>
         )}

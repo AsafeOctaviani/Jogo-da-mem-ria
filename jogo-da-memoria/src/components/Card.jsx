@@ -1,4 +1,5 @@
 import './Card.css'
+import cardBackImg from '../assets/card-back.png'
 
 function Card({ type, content, isFlipped, isMatched, onClick, disabled }) {
   const handleClick = () => {
@@ -18,16 +19,7 @@ function Card({ type, content, isFlipped, isMatched, onClick, disabled }) {
     >
       <div className="card-inner">
         <div className="card-back">
-          <div className="card-back-pattern">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M12 3c-1.5 2-3 3.5-3 5.5a3 3 0 1 0 6 0c0-2-1.5-3.5-3-5.5z" />
-              <path d="M12 21V12" />
-              <path d="M9 15l3-3 3 3" />
-              <path d="M7 19l5-5 5 5" />
-            </svg>
-            <span className="card-back-label">?</span>
-          </div>
-
+          <img src={cardBackImg} alt="" className="card-back-image" draggable="false" />
         </div>
         <div className={`card-front ${type === 'image' ? 'card-front-image' : 'card-front-text'}`}>
           {type === 'image' ? (

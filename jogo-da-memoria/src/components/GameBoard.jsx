@@ -43,8 +43,8 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
           }
           return 0
         }
-        if (prev === 61) showToast('⏱️ 1 minuto restante!', 'warning', 3000)
-        if (prev === 31) showToast('⚠️ 30 segundos!', 'error', 3000)
+        if (prev === 61) showToast('1 minuto restante!', 'warning', 3000)
+        if (prev === 31) showToast('30 segundos!', 'error', 3000)
         return prev - 1
       })
     }, 1000)
@@ -83,7 +83,7 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
 
       if (card1.pairId === card2.pairId && card1.type !== card2.type) {
         
-        showToast('Par encontrado! 🎉', 'success')
+        showToast('Par encontrado!', 'success')
         setTimeout(() => {
           setMatchedPairs((prev) => {
             const next = new Set(prev)
@@ -211,7 +211,7 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
       <div className="game-content">
 <div className="game-left">
 <div className="game-instruction">
-            <span className="instruction-icon">💡</span>
+            <span className="instruction-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 1 4 12.7V17a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1v-2.3A7 7 0 0 1 12 2z"/></svg></span>
             <span>Clique em 2 cards para tentar combinar uma <strong>descrição</strong> com sua <strong>imagem</strong></span>
           </div>
 <div className={`cards-grid cards-grid-${phase.pairs}`}>
