@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { generatePhases } from './data/phases'
 import StartScreen from './components/StartScreen'
 import GameBoard from './components/GameBoard'
@@ -13,6 +13,8 @@ function App() {
   const [lastPhaseAttempts, setLastPhaseAttempts] = useState(0)
   const [lastPhaseTime, setLastPhaseTime] = useState(0)
   const [phaseSuccess, setPhaseSuccess] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const transitionCallback = useRef(null)
 
   const startGame = useCallback(() => {
     const newPhases = generatePhases()
@@ -35,14 +37,25 @@ function App() {
     setGameState('phaseResult')
   }, [])
 
+  const fadeAndExecute = useCallback((callback) => {
+    setIsTransitioning(true)
+    transitionCallback.current = callback
+    setTimeout(() => {
+      callback()
+      setIsTransitioning(false)
+    }, 400)
+  }, [])
+
   const handleNextPhase = useCallback(() => {
-    if (currentPhase >= 4) {
-      setGameState('gameComplete')
-    } else {
-      setCurrentPhase((prev) => prev + 1)
-      setGameState('playing')
-    }
-  }, [currentPhase])
+    fadeAndExecute(() => {
+      if (currentPhase >= 4) {
+        setGameState('gameComplete')
+      } else {
+        setCurrentPhase((prev) => prev + 1)
+        setGameState('playing')
+      }
+    })
+  }, [currentPhase, fadeAndExecute])
 
   const handleRetryPhase = useCallback(() => {
     setPhases((prev) => {
@@ -74,6 +87,7 @@ function App() {
 
   return (
     <>
+      <div className={`app-transition ${isTransitioning ? 'fade-out' : ''}`}>
       {gameState === 'start' && (
         <StartScreen onStart={startGame} />
       )}
@@ -109,6 +123,7 @@ function App() {
           onRestart={handleBackToMenu}
         />
       )}
+      </div>
     </>
   )
 }

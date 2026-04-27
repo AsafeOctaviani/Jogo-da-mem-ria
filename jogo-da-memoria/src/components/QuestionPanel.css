@@ -16,6 +16,8 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 16px;
+  padding-bottom: 14px;
+  position: relative;
 }
 
 .question-panel-header h3 {
@@ -24,6 +26,16 @@
   font-weight: 700;
   color: #a7f3d0;
   letter-spacing: 0.02em;
+}
+
+.question-panel-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.5), rgba(16, 185, 129, 0.3), transparent);
 }
 
 .question-icon {

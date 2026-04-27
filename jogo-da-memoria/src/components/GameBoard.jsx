@@ -5,6 +5,7 @@ import ToastContainer, { useToast } from './Toast'
 import ConfirmModal from './ConfirmModal'
 import { PHASE_TIME_LIMITS } from '../data/phases'
 import gameBg from '../assets/game-bg.png'
+import AudioPlayer from './AudioPlayer'
 import './GameBoard.css'
 
 function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestartPhase, currentPhaseIndex }) {
@@ -172,6 +173,7 @@ function GameBoard({ phase, onPhaseComplete, onPhaseFail, onBackToMenu, onRestar
               <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
             </svg>
           </button>
+          <AudioPlayer />
         </div>
 <div className="phase-indicator">
           <div className="phase-badges">
